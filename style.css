@@ -32,8 +32,9 @@ body{
   display: flex;
   flex-direction: column;
   text-align: center;
+  /* width: 142px; */
 }
-#fiveDays{
+#fiveDays1, #fiveDays2, #fiveDays3, #fiveDays4, #fiveDays5{
   font-weight: bold;
   text-transform: uppercase;
   padding: 5px;
@@ -58,7 +59,7 @@ body{
   margin-right: 20px;
   background-color: rgba(0, 0, 0, 0.1);
 }
-.timeBox{
+#timeBox{
   display: flex;
 }
 #currentTime{
@@ -74,7 +75,7 @@ body{
   top: 70px;
 }
 #currentDate, #currentYear{
-  font-size: 40px;
+  font-size: 35px;
   text-align: right;
   position: relative;
   bottom: 20px;
@@ -140,13 +141,11 @@ body{
   background-color: rgba(0, 0, 0, 0.1);
 }
 table {
-  width: 100%;
   height: 100vh;
-  border-collapse: collapse;
-  margin-top: 20px;
 }
 th, td {
-  border: 1px solid black;
+  
+  background-color: rgba(255, 255, 255, 0.3);
   padding: 8px;
   text-align: center;
 }
