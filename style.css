@@ -6,26 +6,33 @@
   border-radius: 10px;
 
 }
-
+.setting{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
 body{
-  background-color: rgba(255, 255, 255, 0.7);
+  /* background-color: rgba(255, 255, 255, 0.7); */
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr .5fr repeat(8, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   height: 2200px;
-  min-width: 1250px;
-  max-width: 1250px;
+  min-width: 1150px;
+  max-width: 1150px;
 }
 
 /* weather */
 #weatherBox{
   grid-area: 1 / 1 / 2 / 4;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 #celsius{
-  font-size: 60px;
+  font-size: 55px;
   margin-left: 40px;
 }
 .weather{
@@ -34,12 +41,12 @@ body{
   text-align: center;
   /* width: 142px; */
 }
-#fiveDays1, #fiveDays2, #fiveDays3, #fiveDays4, #fiveDays5{
+.fiveDays{
   font-weight: bold;
   text-transform: uppercase;
   padding: 5px;
   border-radius: 30px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.3);
 
 }
 .weather img{
@@ -57,13 +64,13 @@ body{
 #dayBox{
   grid-area: 1 / 4 / 2 / 6;
   margin-right: 20px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 #timeBox{
   display: flex;
 }
 #currentTime{
-  font-size: 110px;
+  font-size: 100px;
   text-align: right;
   width: 100%;
   margin-right: 10px;
@@ -72,10 +79,10 @@ body{
   font-size: 50px;
   text-align: center;
   position: relative;
-  top: 70px;
+  top: 60px;
 }
 #currentDate, #currentYear{
-  font-size: 35px;
+  font-size: 30px;
   text-align: right;
   position: relative;
   bottom: 20px;
@@ -92,15 +99,15 @@ body{
   margin: 30px;
   color: greenyellow;
   color: #ff7d47;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.3);
 }
-#stockBox{
-  background-color: rgba(0, 0, 0, 0.3);
+.stockBox{
+  background-color: rgba(0, 0, 0, 0.7);
 }
-#stockName{
+.stockName{
   font-size: 20px;
 }
-#stockPrice{
+.stockPrice{
   font-size: 30px;
   font-weight: bold;
 }
@@ -108,20 +115,27 @@ body{
 
 
 /* note */
-#note, #quotes, #schedule{
+#quotes, #schedule{
   width: 33%;
 }
 #noteBox{
   display: flex;
   justify-content: space-around;
   grid-area: 3 / 1 / 5 / 6;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 #note{
-  background-color: rgba(255, 0, 0, 0.2);
+  position: relative;
+  bottom: 10px;
+  width: 100%;
+  height: 376px;
+  background-color: rgba(255, 255, 0, 0.8);
+  padding: 10px;
+  font-size: 25px;
 }
 #quotes{
-  background-color: rgba(0, 255, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,7 +152,7 @@ body{
 /* calendar */
 #calendarBox{
   grid-area: 5 / 1 / 11 / 6;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 table {
   height: 100vh;
@@ -153,3 +167,178 @@ th {
   background-color: #f2f2f2;
 }
 /* calendar */
+
+
+/* pop up */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+@keyframes scaleIn {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes scaleOut {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+}
+
+input, button{
+  border: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+}
+
+#settingPopup{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+#weatherPopup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.weatherCloseIcon{
+  width: 25px;
+  height: 25px;
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  margin: 0;
+}
+#timePopup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+#stockPopup{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.stockCloseIcon{
+  width: 25px;
+  height: 25px;
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  margin: 0;
+}
+
+#notePopup{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+#notePopup textarea{
+  padding: 10px;
+  position: relative;
+  top: 20px;
+}
+.noteCloseIcon{
+  width: 25px;
+  height: 25px;
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  margin: 0;
+}
+#schedulePopup{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* pop up */
+
+/* smartphone */
+@media only screen and (max-width: 480px) {
+
+  body{
+    min-width: 450px;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .weather5, .stockBox5, .stockBox6, .stockBox7, #dayBox, #note{
+    display: none;
+  }
+
+  #noteBox{
+    flex-direction: column;
+  }
+
+  #quotes, #schedule{
+    width: 400px;
+    height: 450px;
+  }
+  th, td {
+  
+    width: 25px;
+    height: 25px;
+  }
+}

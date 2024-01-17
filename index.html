@@ -4,40 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <!-- jquery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<!-- jquery storage api -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-storage-api/1.9.4/jquery.storageapi.min.js" integrity="sha512-rZXftKfJtDmBFPfxFYFjwGM3QadaGJCrOpdaOh3JPkk2wJXSghhUa7bn9CCn7R/UPW29aMuWY0JDnbZEiUYxgQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 <body>
-  <div id="weatherBox">
+  <img src="images/icons/icons8-setting-64.png" class="setting" onclick="openPopup('settingPopup')">
+  <div id="weatherBox" onclick="openPopup('weatherPopup')">
     <div id="celsius">0°c</div>
     <br>
     <div id="weatherHourly">
-    <div class="weather">
-      <div id="fiveDays1">Today</div>
+    <div class="weather weather1">
+      <div class="fiveDays days1">Today</div>
       <img src="images/icons/autumn.png" id="first">
-      <div id="dayTemp1">0 / 0</div>
+      <div class="dayTemp temp1">0 / 0</div>
     </div>
-    <div class="weather">
-      <div id="fiveDays2">mon</div>
+    <div class="weather weather2">
+      <div class="fiveDays days2">mon</div>
       <img src="images/icons/autumn.png" id="second">
-      <div id="dayTemp2">0 / 0</div>
+      <div class="dayTemp temp2">0 / 0</div>
     </div>
-    <div class="weather">
-      <div id="fiveDays3">mon</div>
+    <div class="weather weather3">
+      <div class="fiveDays days3">mon</div>
       <img src="images/icons/autumn.png" id="third">
-      <div id="dayTemp3">0 / 0</div>
+      <div class="dayTemp temp3">0 / 0</div>
     </div>
-    <div class="weather">
-      <div id="fiveDays4">mon</div>
+    <div class="weather weather4">
+      <div class="fiveDays days4">mon</div>
       <img src="images/icons/autumn.png" id="fourth">
-      <div id="dayTemp4">0 / 0</div>
+      <div class="dayTemp temp4">0 / 0</div>
     </div>
-    <div class="weather">
-      <div id="fiveDays5">mon</div>
+    <div class="weather weather5">
+      <div class="fiveDays days5">mon</div>
       <img src="images/icons/autumn.png" id="fifth">
-      <div id="dayTemp5">0 / 0</div>
+      <div class="dayTemp temp5">0 / 0</div>
     </div>
     </div>
   </div>
-  <div id="dayBox">
+  <div id="dayBox" onclick="openPopup('timePopup')">
     <div id="timeBox">
     <div id="currentTime">00 : 00</div>
     <div id="ampm">AM</div>
@@ -47,49 +53,93 @@
     <div id="currentYear">2023</div>
   </div>
   <div id="aboutStockBox">
-    <div id="stockBox">
-      <div id="stockName">PLTR</div>
-      <div id="stockPrice">50.00</div>
+    <div class="stockBox stockBox1" onclick="openPopup('stockPopup')">
+      <div class="stockName stock1">PLTR</div>
+      <div class="stockPrice price1">50.00</div>
     </div>
-    <div id="stockBox">
-      <div id="stockName">U</div>
-      <div id="stockPrice">50.00</div>
+    <div class="stockBox stockBox2" onclick="openPopup('stockPopup')">
+      <div class="stockName stock2">U</div>
+      <div class="stockPrice price2">50.00</div>
     </div>
-    <div id="stockBox">
-      <div id="stockName">UBER</div>
-      <div id="stockPrice">50.00</div>
+    <div class="stockBox stockBox3" onclick="openPopup('stockPopup')">
+      <div class="stockName stock3">UBER</div>
+      <div class="stockPrice price3">50.00</div>
     </div>
-    <div id="stockBox">
-      <div id="stockName">RBLX</div>
-      <div id="stockPrice">50.00</div>
+    <div class="stockBox stockBox4" onclick="openPopup('stockPopup')">
+      <div class="stockName stock4">RBLX</div>
+      <div class="stockPrice price4">50.00</div>
     </div>
-    <div id="stockBox">
-      <div id="stockName">UNRL</div>
-      <div id="stockPrice">50.00</div>
+    <div class="stockBox stockBox5" onclick="openPopup('stockPopup')">
+      <div class="stockName stock5">UNRL</div>
+      <div class="stockPrice price5">50.00</div>
     </div>
-    <div id="stockBox">
-      <div id="stockName">TSLA</div>
-      <div id="stockPrice">50.00</div>
+    <div class="stockBox stockBox6" onclick="openPopup('stockPopup')">
+      <div class="stockName stock6">TSLA</div>
+      <div class="stockPrice price6">50.00</div>
     </div>
-    <div id="stockBox">
-      <div id="stockName">AAPL</div>
-      <div id="stockPrice">150.00</div>
+    <div class="stockBox stockBox7" onclick="openPopup('stockPopup')">
+      <div class="stockName stock7">AAPL</div>
+      <div class="stockPrice price7">150.00</div>
     </div>
   </div>
   <div id="noteBox">
-    <div id="note">note</div>
+    <div >
+    <textarea name="" id="note" cols="25" rows="9"></textarea></div>
     <h2 id="quotes">motivation</h2>
-    <div id="schedule">
+    <div id="schedule" onclick="openPopup('schedulePopup')">
       <div>today</div>
       <div>schedule</div>
       <div>list</div>
     </div>
   </div>
   <div id="calendarBox"></div>
+  <!-- popup -->
+  <div id="overlay"></div>
+  <div id="weatherPopup">
+    <h2>Weather</h2>
+    <img src="images/icons/icons8-close-100.png" class="weatherCloseIcon" onclick="closePopup('weatherPopup')">
+    <label for="city">City:</label>
+    <input type="text" id="city" placeholder="city name">
+    <br>
+    <button id="weatherBtn">SET</button>
+</div>
+<div id="stockPopup">
+  <h2>Stock</h2>
+    <img src="images/icons/icons8-close-100.png" class="stockCloseIcon" onclick="closePopup('stockPopup')">
+    <label for="stock">Stock:</label>
+    <input type="text" id="stock" placeholder="symbol">
+    <br>
+    <button id="stockBtn">SET</button>
+</div>
+<div id="notePopup">
+  <img src="images/icons/icons8-close-100.png" class="noteCloseIcon" onclick="closePopup('notePopup')">
+  <textarea name="Comments" id="notes" cols="30" rows="10"></textarea>
+  <br>
+  <button id="noteBtn">Save</button>
+</div>
+<div id="settingPopup">
+  <img src="images/icons/icons8-close-100.png" class="noteCloseIcon" onclick="closePopup('settingPopup')">
+  <input type="number" id="imgNum" placeholder="number">
+  <input type="text" id="imgFormat" placeholder="format">
+  <button id="settingBtn">set</button>
+</div>
+<div id="timePopup">
+  <img src="images/icons/icons8-close-100.png" class="noteCloseIcon" onclick="closePopup('timePopup')">
+  <button>stop watch</button>
+  <button>timer</button>
+</div>
+<div id="schedulePopup">
+  <img src="images/icons/icons8-close-100.png" class="noteCloseIcon" onclick="closePopup('schedulePopup')">
+  <button>check buttons instead</button>
+</div>
+<!-- popup -->
 </body>
 <link rel="stylesheet" href="style.css">
 <script type = "text/javascript" src="apiKey.js"></script>
 <script src="main.js"></script>
+<script src="quotes.js"></script>
+<script src="calendar.js"></script>
+<script src="stock.js"></script>
 <!-- font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
